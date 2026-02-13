@@ -8,7 +8,8 @@ python-dotenv
 loggers
 yt-dlp
 wget
-youtube_dl
 Flask==2.3.2
 gunicorn==22.0.0
 sent
+mega.py
+gdown

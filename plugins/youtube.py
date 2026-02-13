@@ -1,7 +1,7 @@
 import os
 import asyncio
 
-from youtube_dl import YoutubeDL
+from yt_dlp import YoutubeDL
 from pyrogram import enums
 from pyrogram.types import Message
 from pyrogram import Client, filters
