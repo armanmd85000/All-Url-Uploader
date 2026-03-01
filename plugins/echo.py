@@ -11,6 +11,7 @@ from config import Config
 from plugins.script import Translation
 from plugins.functions.ran_text import random_char
 from plugins.functions.display_progress import humanbytes
+from plugins.functions.direct_links import process_mega_link, process_gdrive_link
 
 logging.basicConfig(
     level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -78,6 +79,12 @@ async def echo(bot, update):
                 o = entity.offset
                 length = entity.length
                 url = url[o: o + length]
+
+    if "mega.nz" in url or "mega.co.nz" in url:
+        return await process_mega_link(bot, update, url)
+    if "drive.google.com" in url or "drive.google.com/folderview" in url:
+        return await process_gdrive_link(bot, update, url)
+
     if Config.HTTP_PROXY != "":
         command_to_exec = [
             "yt-dlp",
